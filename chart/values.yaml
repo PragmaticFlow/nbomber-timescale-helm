@@ -1,0 +1,30 @@
+image:
+  repository: timescale/timescaledb
+  tag: 2.24.0-pg17-oss
+  pullPolicy: IfNotPresent
+
+resources:
+  limits:
+    memory: "4Gi"
+  requests:
+    memory: "2Gi"
+
+service:
+  type: ClusterIP
+  port: 5432
+
+persistence:
+  size: 5Gi  
+  storageClass: ""
+
+# Node scheduling
+nodeSelector: {}
+affinity: {}
+tolerations: []
+
+# PostgreSQL configuration
+postgresql:
+  existingSecret: ""   # If set, use this secret instead
+  password: ""         # If empty, Helm generates one  
+  database: "timescaledb"
+  user: "timescaledb"
