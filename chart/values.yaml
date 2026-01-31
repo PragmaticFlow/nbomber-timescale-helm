@@ -1,6 +1,6 @@
 image:
   repository: timescale/timescaledb
-  tag: 2.24.0-pg17-oss
+  tag: 2.25.0-pg18-oss
   pullPolicy: IfNotPresent
 
 resources:
@@ -24,7 +24,7 @@ tolerations: []
 
 # PostgreSQL configuration
 postgresql:
-  existingSecret: ""   # If set, use this secret instead
-  password: ""         # If empty, Helm generates one  
+  existingSecret: ""   # If set, use this secret instead (must contain 'postgres-password' key)
+  password: ""         # Required if existingSecret is not set
   database: "timescaledb"
   user: "timescaledb"
