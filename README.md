@@ -44,7 +44,7 @@ The following table lists the configurable parameters of the chart and their def
 | Key                         | Type   | Default                 | Description                                   |
 | --------------------------- | ------ | ----------------------- | --------------------------------------------- |
 | `image.repository`          | string | `timescale/timescaledb` | Docker image repository                       |
-| `image.tag`                 | string | `2.24.0-pg17-oss`       | Docker image tag                              |
+| `image.tag`                 | string | `2.25.0-pg18-oss`       | Docker image tag                              |
 | `image.pullPolicy`          | string | `IfNotPresent`          | Image pull policy                             |
 | `resources.requests.memory` | string | `2Gi`                   | Memory request for the pod                    |
 | `resources.limits.memory`   | string | `4Gi`                   | Memory limit for the pod                      |
