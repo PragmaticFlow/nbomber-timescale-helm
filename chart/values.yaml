@@ -1,6 +1,11 @@
+# Override the chart name
+nameOverride: ""
+# Override the full name of resources
+fullnameOverride: ""
+
 image:
   repository: timescale/timescaledb
-  tag: 2.25.0-pg18-oss
+  tag: ""  # If empty, uses Chart.appVersion
   pullPolicy: IfNotPresent
 
 resources:
@@ -28,3 +33,8 @@ postgresql:
   password: ""         # Required if existingSecret is not set
   database: "timescaledb"
   user: "timescaledb"
+
+  # PostgreSQL configuration
+  # TimescaleDB auto-tunes most settings, we only override max_connections
+  config:
+    max_connections: 300

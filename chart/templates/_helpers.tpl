@@ -1,11 +1,60 @@
-{{- define "my-chart.name" -}}
-{{- .Chart.Name | trunc 63 | trimSuffix "-" -}}
+{{/*
+Expand the name of the chart.
+*/}}
+{{- define "timescale.name" -}}
+{{- default .Chart.Name .Values.nameOverride | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
-{{- define "my-chart.fullname" -}}
-{{- printf "%s-%s" .Release.Name (include "my-chart.name" .) | trunc 63 | trimSuffix "-" -}}
+{{/*
+Create a default fully qualified app name.
+*/}}
+{{- define "timescale.fullname" -}}
+{{- if .Values.fullnameOverride }}
+{{- .Values.fullnameOverride | trunc 63 | trimSuffix "-" }}
+{{- else }}
+{{- $name := default .Chart.Name .Values.nameOverride }}
+{{- if contains $name .Release.Name }}
+{{- .Release.Name | trunc 63 | trimSuffix "-" }}
+{{- else }}
+{{- printf "%s-%s" .Release.Name $name | trunc 63 | trimSuffix "-" }}
+{{- end }}
+{{- end }}
 {{- end }}
 
-{{- define "my-chart.chart" -}}
-{{- printf "%s-%s" .Chart.Name .Chart.Version | replace "+" "_" -}}
+{{/*
+Create chart name and version as used by the chart label.
+*/}}
+{{- define "timescale.chart" -}}
+{{- printf "%s-%s" .Chart.Name .Chart.Version | replace "+" "_" | trunc 63 | trimSuffix "-" }}
+{{- end }}
+
+{{/*
+Common labels
+*/}}
+{{- define "timescale.labels" -}}
+helm.sh/chart: {{ include "timescale.chart" . }}
+{{ include "timescale.selectorLabels" . }}
+{{- if .Chart.AppVersion }}
+app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
+{{- end }}
+app.kubernetes.io/managed-by: {{ .Release.Service }}
+{{- end }}
+
+{{/*
+Selector labels
+*/}}
+{{- define "timescale.selectorLabels" -}}
+app.kubernetes.io/name: {{ include "timescale.name" . }}
+app.kubernetes.io/instance: {{ .Release.Name }}
+{{- end }}
+
+{{/*
+Create the name of the service account to use
+*/}}
+{{- define "timescale.serviceAccountName" -}}
+{{- if .Values.serviceAccount.create }}
+{{- default (include "timescale.fullname" .) .Values.serviceAccount.name }}
+{{- else }}
+{{- default "default" .Values.serviceAccount.name }}
+{{- end }}
 {{- end }}
