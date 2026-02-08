@@ -2,10 +2,11 @@ apiVersion: v1
 entries:
   timescale:
   - apiVersion: v2
-    created: "2026-02-02T15:18:05.258738722Z"
+    appVersion: 2.25.0-pg18-oss
+    created: "2026-02-08T14:56:51.239890164Z"
     description: A Helm chart for deploying a single node Timescale (OSS) which will
       be used with NBomber Studio
-    digest: 90f960508e780232d2461a625909824111ce32d508d4288fd208a4605f39a65d
+    digest: a48ccf1eb7b8e8405a68373ce3335d2f1ea0c7f14d1007a52048d33fd7c96d71
     name: timescale
     urls:
     - https://pragmaticflow.github.io/nbomber-timescale-helm/timescale-0.2.0.tgz
@@ -19,4 +20,4 @@ entries:
     urls:
     - https://pragmaticflow.github.io/nbomber-timescale-helm/timescale-0.1.0.tgz
     version: 0.1.0
-generated: "2026-02-02T15:18:05.258348037Z"
+generated: "2026-02-08T14:56:51.239407985Z"
