@@ -34,31 +34,35 @@ helm install my-nbomber-db timescale/timescale --version 0.2.0
 By default, this installs a TimescaleDB instance with:
 - `timescaledb` database
 - `timescaledb` user
-- Randomly generated password (unless an existing secret is provided)
 - 5Gi persistent volume
+
+> **Note:** You must provide either `postgresql.password` or `postgresql.existingSecret`.
 
 ### Configuration
 
 The following table lists the configurable parameters of the chart and their default values:
 
-| Key                         | Type   | Default                 | Description                                   |
-| --------------------------- | ------ | ----------------------- | --------------------------------------------- |
-| `image.repository`          | string | `timescale/timescaledb` | Docker image repository                       |
-| `image.tag`                 | string | `2.25.0-pg18-oss`       | Docker image tag                              |
-| `image.pullPolicy`          | string | `IfNotPresent`          | Image pull policy                             |
-| `resources.requests.memory` | string | `2Gi`                   | Memory request for the pod                    |
-| `resources.limits.memory`   | string | `4Gi`                   | Memory limit for the pod                      |
-| `service.type`              | string | `ClusterIP`             | Kubernetes service type                       |
-| `service.port`              | int    | `5432`                  | Service port                                  |
-| `persistence.size`          | string | `5Gi`                   | Persistent volume size                        |
-| `persistence.storageClass`  | string | `""`                    | Storage class for PVC                         |
-| `postgresql.user`           | string | `timescaledb`           | PostgreSQL username                           |
-| `postgresql.database`       | string | `timescaledb`           | PostgreSQL database                           |
-| `postgresql.password`       | string | `""`                    | PostgreSQL password (auto-generated if empty) |
-| `postgresql.existingSecret` | string | `""`                    | Use an existing secret for credentials        |
-| `nodeSelector`              | object | `{}`                    | Node selector for pod scheduling              |
-| `affinity`                  | object | `{}`                    | Pod affinity rules                            |
-| `tolerations`               | array  | `[]`                    | Pod tolerations                               |
+| Parameter                           | Description                                         | Default                 |
+| ----------------------------------- | --------------------------------------------------- | ----------------------- |
+| `image.repository`                  | Docker image repository                             | `timescale/timescaledb` |
+| `image.tag`                         | Docker image tag (defaults to Chart appVersion)     | `""`                    |
+| `image.pullPolicy`                  | Image pull policy                                   | `IfNotPresent`          |
+| `resources.requests.memory`         | Memory request for the pod                          | `2Gi`                   |
+| `resources.limits.memory`           | Memory limit for the pod                            | `4Gi`                   |
+| `service.type`                      | Kubernetes service type                             | `ClusterIP`             |
+| `service.port`                      | Service port                                        | `5432`                  |
+| `persistence.size`                  | Persistent volume size                              | `5Gi`                   |
+| `persistence.storageClass`          | Storage class for PVC                               | `""`                    |
+| `postgresql.user`                   | PostgreSQL username                                 | `timescaledb`           |
+| `postgresql.database`              | PostgreSQL database                                 | `timescaledb`           |
+| `postgresql.config.max_connections` | Maximum concurrent database connections             | `300`                   |
+| `postgresql.password`              | PostgreSQL password (required if no existingSecret) | `""`                    |
+| `postgresql.existingSecret`        | Use an existing secret for credentials              | `""`                    |
+| `nameOverride`                      | Override chart name                                 | `""`                    |
+| `fullnameOverride`                  | Override full resource name                         | `""`                    |
+| `nodeSelector`                      | Node selector for pod scheduling                    | `{}`                    |
+| `affinity`                          | Pod affinity rules                                  | `{}`                    |
+| `tolerations`                       | Pod tolerations                                     | `[]`                    |
 
 ### Overriding Values
 
