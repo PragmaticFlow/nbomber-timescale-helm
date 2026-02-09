@@ -1,5 +1,5 @@
 apiVersion: v2
 name: timescale
-version: 0.2.0
+version: 0.3.0
 appVersion: "2.25.0-pg18-oss"
 description: A Helm chart for deploying a single node Timescale (OSS) which will be used with NBomber Studio

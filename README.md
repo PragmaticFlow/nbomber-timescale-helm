@@ -21,7 +21,7 @@ helm repo add timescale https://pragmaticflow.github.io/nbomber-timescale-helm/
 
 Install chart
 ```bash
-helm install my-nbomber-db timescale/timescale --version 0.2.0
+helm install nbomber-timescale timescale/timescale
 ```
 
 ### Prerequisites
