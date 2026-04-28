@@ -32,9 +32,9 @@ helm install nbomber-timescale timescale/timescale
     - At least 4Gi memory limit recommended for heavier workloads
 
 By default, this installs a TimescaleDB instance with:
-- `timescaledb` database
+- `nb_studio_db` database
 - `timescaledb` user
-- 5Gi persistent volume
+- 10Gi persistent volume
 
 > **Note:** You must provide either `postgresql.password` or `postgresql.existingSecret`.
 
@@ -51,10 +51,10 @@ The following table lists the configurable parameters of the chart and their def
 | `resources.limits.memory`           | Memory limit for the pod                            | `4Gi`                   |
 | `service.type`                      | Kubernetes service type                             | `ClusterIP`             |
 | `service.port`                      | Service port                                        | `5432`                  |
-| `persistence.size`                  | Persistent volume size                              | `5Gi`                   |
+| `persistence.size`                  | Persistent volume size                              | `10Gi`                  |
 | `persistence.storageClass`          | Storage class for PVC                               | `""`                    |
 | `postgresql.user`                   | PostgreSQL username                                 | `timescaledb`           |
-| `postgresql.database`              | PostgreSQL database                                 | `timescaledb`           |
+| `postgresql.database`              | PostgreSQL database                                 | `nb_studio_db`          |
 | `postgresql.config.max_connections` | Maximum concurrent database connections             | `300`                   |
 | `postgresql.password`              | PostgreSQL password (required if no existingSecret) | `""`                    |
 | `postgresql.existingSecret`        | Use an existing secret for credentials              | `""`                    |
@@ -71,7 +71,7 @@ You can override any of these values in a `values.yaml` file:
 ```yaml
 postgresql:
   user: timescaledb
-  database: timescaledb
+  database: nb_studio_db
   password: supersecretpassword
 
 persistence:
@@ -89,6 +89,6 @@ kubectl create secret generic my-timescale-credentials \
 postgresql:
   existingSecret: "my-timescale-credentials"
   user: timescaledb
-  database: timescaledb
+  database: nb_studio_db
   password: ""
 ```
