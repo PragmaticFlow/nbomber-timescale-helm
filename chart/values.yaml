@@ -31,7 +31,7 @@ tolerations: []
 postgresql:
   existingSecret: ""   # If set, use this secret instead (must contain 'postgres-password' key)
   password: ""         # Required if existingSecret is not set
-  database: "timescaledb"
+  database: "nb_studio_db"
   user: "timescaledb"
 
   # PostgreSQL configuration
