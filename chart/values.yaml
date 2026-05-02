@@ -32,7 +32,7 @@ postgresql:
   existingSecret: ""   # If set, use this secret instead (must contain 'postgres-password' key)
   password: ""         # Required if existingSecret is not set
   database: "nb_studio_db"
-  user: "timescaledb"
+  user: "nb_studio_db"
 
   # PostgreSQL configuration
   # TimescaleDB auto-tunes most settings, we only override max_connections
