@@ -17,6 +17,7 @@ resources:
 service:
   type: ClusterIP
   port: 5432
+  annotations: {}
 
 persistence:
   size: 10Gi

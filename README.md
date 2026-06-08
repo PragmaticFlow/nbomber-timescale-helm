@@ -51,6 +51,7 @@ The following table lists the configurable parameters of the chart and their def
 | `resources.limits.memory`           | Memory limit for the pod                            | `4Gi`                   |
 | `service.type`                      | Kubernetes service type                             | `ClusterIP`             |
 | `service.port`                      | Service port                                        | `5432`                  |
+| `service.annotations`               | Annotations to add to the Service resource          | `{}`                    |
 | `persistence.size`                  | Persistent volume size                              | `10Gi`                  |
 | `persistence.storageClass`          | Storage class for PVC                               | `""`                    |
 | `postgresql.user`                   | PostgreSQL username                                 | `timescaledb`           |
@@ -76,6 +77,15 @@ postgresql:
 
 persistence:
   size: 10Gi
+```
+
+You can also add custom annotations to the Service, for example to configure an external load balancer or monitoring scraping:
+
+```yaml
+service:
+  annotations:
+    prometheus.io/scrape: "true"
+    prometheus.io/port: "5432"
 ```
 
 Additionally you can attach your own secret or create a new one:
